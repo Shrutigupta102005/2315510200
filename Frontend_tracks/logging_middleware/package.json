@@ -1,0 +1,6 @@
+{
+  "name": "campus-logging-middleware",
+  "version": "1.0.0",
+  "private": true,
+  "main": "logger.js"
+}
