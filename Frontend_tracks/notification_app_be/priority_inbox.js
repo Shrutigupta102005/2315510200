@@ -2,8 +2,11 @@
 
 const fs = require("node:fs/promises");
 const path = require("node:path");
+const { getAuthorizationToken } = require("./auth");
+const { createLogger } = require("../logging_middleware/logger");
 
 const INBOX_LIMIT = Number.parseInt(process.env.PRIORITY_LIMIT || "10", 10);
+const logger = createLogger({ serviceName: "notification-app-be" });
 const TYPE_WEIGHTS = {
   placement: 300,
   result: 200,
@@ -181,9 +184,10 @@ function findTopNotifications(rawNotifications, limit = INBOX_LIMIT) {
 async function loadNotifications() {
   if (process.env.NOTIFICATION_API_URL) {
     const headers = {};
+    const token = await getAuthorizationToken();
 
-    if (process.env.NOTIFICATION_API_TOKEN) {
-      headers.authorization = `Bearer ${process.env.NOTIFICATION_API_TOKEN}`;
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
     }
 
     const response = await fetch(process.env.NOTIFICATION_API_URL, { headers });
@@ -217,11 +221,16 @@ function printInbox(notifications) {
 async function main() {
   const notifications = await loadNotifications();
   const topNotifications = findTopNotifications(notifications);
+  await logger.info("priority_inbox.generated", {
+    totalNotifications: notifications.length,
+    selectedNotifications: topNotifications.length,
+  });
   printInbox(topNotifications);
 }
 
 if (require.main === module) {
   main().catch((error) => {
+    logger.error("priority_inbox.failed", { message: error.message }).catch(() => {});
     console.error(error.message);
     process.exitCode = 1;
   });
