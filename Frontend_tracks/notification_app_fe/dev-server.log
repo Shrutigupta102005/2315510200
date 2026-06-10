@@ -1,0 +1,44 @@
+
+> notification-priority-frontend@1.0.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://172.16.161.233:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling /api/notifications ...
+ ✓ Compiled /api/notifications in 672ms (299 modules)
+ GET /api/notifications?limit=3&page=1 200 in 1499ms
+ GET /api/notifications?limit=10&page=1&notification_type=Placement 200 in 639ms
+ ✓ Compiled in 256ms (104 modules)
+ GET /api/notifications?limit=50&page=1 200 in 934ms
+ GET /api/notifications?limit=3&page=1 200 in 510ms
+ ○ Compiling /priority ...
+ ✓ Compiled /priority in 2.6s (1796 modules)
+ GET /priority 200 in 3365ms
+ GET /priority 200 in 359ms
+ ○ Compiling /api/notifications ...
+ ✓ Compiled /api/notifications in 514ms (1077 modules)
+ GET /api/notifications?limit=50&page=1 200 in 1218ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1695ms (1803 modules)
+ GET / 200 in 2222ms
+ ✓ Compiled /api/notifications in 466ms (1082 modules)
+ GET /api/notifications?limit=10&page=1 200 in 1339ms
+ GET /api/notifications?limit=10&page=1 200 in 519ms
+ GET /priority 200 in 226ms
+ GET /api/notifications?limit=50&page=1 200 in 13ms
+ GET /api/notifications?limit=50&page=1 200 in 441ms
+ GET / 200 in 77ms
+ GET /api/notifications?limit=10&page=1 200 in 11ms
+ GET /api/notifications?limit=10&page=1 200 in 412ms
+ GET /priority 200 in 30ms
+ GET /api/notifications?limit=50&page=1 200 in 35ms
+ GET /api/notifications?limit=50&page=1 200 in 385ms
+ GET /api/notifications?limit=10&page=1 200 in 593ms
+ GET /priority 200 in 72ms
+ GET /api/notifications?limit=50&page=1 200 in 13ms
+ GET /api/notifications?limit=50&page=1 200 in 714ms
